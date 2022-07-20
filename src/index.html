@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SSE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<i id="notification_bell" class="fa fa-bell"></i>
+<br>
+
+</body>
+<script type="text/javascript">
+    const eventSource = new EventSource('/notifications');
+    eventSource.onmessage = ({ data }) => {
+      const bell = document.getElementById("notification_bell");
+      let currentCount = !isNaN(bell.innerText) ? Number(bell.innerText) : 0;
+      currentCount += 1; 
+      bell.innerText = currentCount;
+    //   document.body.appendChild(message);
+    }
+  </script>
+</html> 
